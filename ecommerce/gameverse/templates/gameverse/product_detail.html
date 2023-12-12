@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}{{product.name}}{% endblock title_block %}
+{% block link_block %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+        :root {
+            --gradient: linear-gradient(to left top, #00bfff 10%, #ff66cc 90%) ;
+        }
+        
+        .btn {
+            border: 5px solid;
+            border-image-slice: 1;
+            background: var(--gradient) ;
+            background-clip: text  ;
+            -webkit-text-fill-color:black ;
+            border-image-source:  var(--gradient) ; 
+            text-decoration: none;
+            transition: all .4s ease;
+        }
+          
+        .btn:hover, .btn:focus {
+            background: var(--gradient)  ;
+            background-clip: none  ;
+            -webkit-text-fill-color: #fff  ;
+            border: 5px solid #fff  ; 
+            box-shadow: #222 1px 0 10px;
+            text-decoration: underline;
+        }
+        .l1{
+            font-family: 'Poppins' sans-serif;
+        }
+        
+        
+
+    </style>
+{% endblock link_block %}
+{% block body_block %}
+{% include "gameverse/partials/header.html" %}
+<ul class="detail"style="color:white;list-style-type: none;">
+    
+    <img src={{product.image.url}}>
+    <br>
+    <strong><li class="l1">Name: {{product.name}}</li></strong>
+    <br>
+    <strong><li class="l1">Price: {{product.price}}</li></strong>
+    <br>
+    <li class="l1"><strong>Description:</strong>
+        <br>{{product.description}}</li>
+    <form method = "post">
+    {% csrf_token %}
+    <a href={% url "add_to_cart" product.pk %} class="btn mr-2">Add to cart</a>    
+    </form>
+
+    
+</ul>
+
+<br><br><br><br>
+
+
+
+
+
+
+
+{% include "gameverse/partials/footer.html" %}
+{% endblock body_block %}

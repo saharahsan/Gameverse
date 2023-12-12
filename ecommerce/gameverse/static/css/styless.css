@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+
+.p-2{
+    color:black;
+    text-align: center;
+    
+}
+.font-weight-bold{
+    color: black;
+}
+.size span {
+  font-size: 11px;
+}
+
+.color span {
+  font-size: 11px;
+}
+
+.product-deta {
+  margin-right: 70px;
+}
+
+.gift-card:focus {
+  box-shadow: none;
+}
+
+.pay-button {
+  color: #fff;
+}
+
+.pay-button:hover {
+  color: #fff;
+}
+
+.pay-button:focus {
+  color: #fff;
+  box-shadow: none;
+}
+
+.text-grey {
+  color:black;
+}
+
+.qty i {
+  font-size: 11px;
+}
+#btn{
+    background: linear-gradient(135deg, #753370 0%, #298096 100%);
+    border: 3px solid #298096;
+    border-radius: 10px;
+
+}
+#btn:focus{
+  border:#753370;
+}
+.total{
+    color:black;
+    text-align: center;
+}

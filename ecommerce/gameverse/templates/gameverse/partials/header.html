@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link_block %}
+<link rel="stylesheet" href="../../static/css/header_footer.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+{% endblock link_block %}
+{% block body_block %}
+    
+    <header class="head">
+        <nav><img src= {% static "images/gaming1.gif" %} alt="GameVerse" class="logo" ></nav>
+        <nav class="menu">
+            <ol>
+                <li class="menu-item"><a href={% url "index"%}>Home</a></li>
+                <li class="menu-item"><a href="#">About</a></li>
+                <li class="menu-item">
+                    <a href={% url "search_result" %}>Search</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Categories</a>
+                    <ol class="sub-menu">
+                        {% for object in categories %}
+                        <li class="menu-item"><a href={% url 'detail' object.pk %}>{{object.name}}</a></li>
+                        {% endfor %}
+
+                    </ol>
+                </li>
+                <li class="menu-item"><a href={% url "cart" %}>Cart</a></li>
+              
+            </ol>
+        </nav>
+
+    </header>
+{% endblock body_block %}

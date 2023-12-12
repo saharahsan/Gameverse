@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block link_block %}
+    <style>
+       
+        .pro{
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            overflow: hidden;
+            margin: 0 auto;
+            
+            
+        
+        }
+        .abc{
+            background-color: transparent;
+            border: 3px solid black;
+            width: 30%;
+            height: auto;
+            
+        }
+        .abc img:hover{
+            cursor: pointer;
+            border:5px solid  #00bfff;
+            transition:0.2s ease
+        
+        }
+        .A{
+            object-fit: cover;
+            vertical-align: middle;
+            border-radius: 3px;
+            height: 400px;
+            width:100%;
+            transition: transform 1s  ease;
+            
+        }
+        
+       
+    </style>
+{% endblock link_block %}
+{% block body_block %}
+{% include "gameverse/partials/header.html" %}
+    <br><br><br><br>
+    <p>Search results for: {{ query }}</p>
+    {% if all_products %}<p>Couldn't Find Any Products You search Checkout these other products</p>{% endif %}
+    <br><br><br>
+    <center><ul class="pro" style="color:white;">
+    {% for product in products %}
+    
+        <a href={% url "product_detail" product.pk%} class="abc"><img src={{product.image.url}} class="A"></a>
+        <br>
+        
+        
+    {% endfor %}
+    {% if all_products %}
+    {% for product in all_products %}
+        <a href={% url "product_detail" product.pk%} class="abc"><img src={{product.image.url}} class="A"></a>
+        <br>
+        
+    {% endfor %}
+    {% endif %}
+
+    </ul><center>
+    <br><br><br><br><br>
+{% include "gameverse/partials/footer.html" %}
+{% endblock body_block %}

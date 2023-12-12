@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}{{category.name}} details{% endblock title_block %}
+{% block link_block %}<link rel="stylesheet" href={% static "css/style_cat.css" %}>{% endblock link_block %}
+{% block body_block %}
+{% include "gameverse/partials/header.html" %}
+<center>
+    <div class="container mx-auto mt-4" style="color:white;">
+        <div class="row">
+            {% for p in category.product_set.all %}
+            <div class="col-md-4">
+                <div class="Cards" style="width: 18rem;">
+                    <img src={{p.image.url}} class="card-img-top" id="image1" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{p.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">PKR:{{p.price}}</h6>
+                        <a href={% url "product_detail" p.pk%} class="btn mr-2">View Detail</a>
+                        <a href={% url "add_to_cart" p.pk %} class="btn mr-2">Add to cart</a>
+         
+                    </div>
+                </div>
+            </div>    
+            {% endfor %}
+        </div>
+    </div>
+</center>
+<br><br><br><br><br>
+
+
+
+
+{% include "gameverse/partials/footer.html" %}
+{% endblock body_block %}

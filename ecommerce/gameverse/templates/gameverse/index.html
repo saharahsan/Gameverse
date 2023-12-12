@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}GameVerse{% endblock title_block %}
+{% block link_block %}
+<link rel="stylesheet" href={% static "css/style.css"%}>
+
+{% endblock link_block %}
+
+{% block body_block %}
+{% include "gameverse/partials/header.html" %}
+
+<main style="color: aliceblue;" class="Main">
+    <section id="top">
+        <div class="wrapper">
+            <h2 class="static_text" style="color:white;">WE DEAL IN <span class="auto_type"></span></h2>
+        </div>
+        <img src="../static/images/top1.png" alt="image" id="bg1">
+    </section>
+    <br><br>
+    <hr style="color: grey;">
+    <b><h1 id="image_bg_text">VIDEO GAME SELLER</h1></b>
+    <section class="mover"> 
+        <div class="mover_container">
+            <div class="slider">
+                <img src="../static/images/1-1.jpg">
+            </div>
+            <div class="slider">
+                <img src="../static/images/2-1.jpg">
+            </div>
+            <div class="slider">
+                <img src="../static/images/3-1.jpg">
+            </div>
+            <div class="slider">
+                <img src="../static/images/4-1.jpg">
+            </div>
+            <div class="slider">
+                <img src="../static/images/5-1.jpg">
+            </div>
+            <div class="slider">
+                <img src="../static/images/6-1.jpg">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><span class="material-symbols-outlined">
+                arrow_back
+                </span>
+            </button>
+            <button id="next"><span class="material-symbols-outlined">
+                arrow_forward
+                </span>
+            </button>
+        </div>
+        <ul class="dots">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+    <br><br><br>
+    <section class="recommendation">
+        <center><h2 class="h2">Featured <b>Products</b></h2></center>
+        <br><br>
+        <div class="container mx-auto mt-4">
+            <div class="row">
+                {% for p in product_rec|dictsort:"id" %}
+                <div class="col-md-4">
+                    <div class="Card" style="width: 18rem;">
+                        <img src={{p.image.url}} id="pro_img"class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{p.name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> PKR: {{p.price}}</h6>
+                            <a href={% url "product_detail" p.pk %} class="btn mr-2">View Detail</a>
+                            <a href={% url "add_to_cart" p.pk %} class="btn mr-2">Add to cart</a>
+                            
+                        </div>
+                    </div>
+                </div>    
+                {% endfor %}    
+            </div>
+        </div>
+        
+        
+    </section>
+    
+    <section>
+
+    </section>
+    <section class="products">
+        <br/><br/><br/>
+        <div class="container_products">
+            
+            <button><img src="../static/images/console.jpg"><p> GAMING CONSOLES</p></button>
+            <button><img src="../static/images/1.jpg"><p>GAMING DISKS</p></button>
+            <button><img src="../static/images/3.jpg"><p>VIRTUAL REALITY</p></button>
+            <button><img src="../static/images/4.jpg"><p>VIRTUAL GIFT CARDS</p></button>
+            <button><img src="../static/images/5.jpg"><p>PC ACCESSORIES</p></button>
+            <button><img src="../static/images/6.jpg" ><p>CONTROLLERS</p></button>
+            
+        </div>
+        <br/><br/><br/><br/>
+    </section>
+    
+    <br><br><br>
+    
+
+    
+    
+</main>
+{% block script_block %}
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="../static/js/indexScript.js"></script>
+
+
+{% endblock script_block %}
+
+
+
+
+{% include "gameverse/partials/footer.html" %}
+{% endblock body_block %}

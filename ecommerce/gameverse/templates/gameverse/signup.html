@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}Login/Signup{% endblock title_block %}
+{% block link_block %}<link rel="stylesheet" href={% static "css/login_signup.css" %}>{% endblock link_block %}
+{% block body_block %}
+    <h2>Sign in/up Form</h2>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="{% url "signup" %}" method="post">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+
+                <input type="text"  placeholder="first name" name="first_name">
+                <input type="text" placeholder="username" name="username">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <input type="submit" value="Signup" id="sign_up">
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="{% url "login"%}" method="post">
+                {% csrf_token %}
+                <h1>Sign in</h1>
+                {% if login_message %}<p style="color: red"><strong>{{ login_message }}</strong></p>{% endif %}
+                <input type="text" placeholder="Username" name="username">
+                <input type="password" placeholder="Password" name="password">
+                <br>
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{request.GET.next}}">
+                {% endif %}
+                <input type="submit" value="Login" id="login">
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block script_block %}<script src="../static/js/script.js"></script>{% endblock script_block %}
+    
+
+{% endblock body_block %}

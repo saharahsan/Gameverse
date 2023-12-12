@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href={% static "css/styless.css" %}>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="body" style="background-color:white;"> 
+    {% include "gameverse/partials/header.html" %}
+
+    
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-8">
+                
+                <div class="p-2"><h4>Shopping cart</h4></div>
+                {% for item in cart_items %}
+                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
+                    
+                    <div class="mr-1"><img class="rounded" src="{{ item.product.image.url}}" width="70"></div>
+                    <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">{{ item.product.name }} </span></div>
+                    <div class="d-flex flex-row align-items-center qty">
+                        <h5 class="text-grey mt-1 mr-1 ml-1">{{ item.quantity }}</h5></div>
+                    <div>
+                        <h5 class="text-grey">PKR{{ item.product.price}} X {{item.quantity }}</h5>
+                    </div>
+                    <div class="d-flex align-items-center"><a href="{% url 'remove_from_cart' item.id %}"><i class="fa fa-trash mb-1 text-danger"></i> </a></div>
+                     
+                </div>
+                {% empty %}
+                <p>Your cart is empty.</p>
+                {% endfor %}
+                
+                
+                <div class="d-flex flex-row align-items-center mt-3 p-2 bg-black rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button" id="btn" >Proceed to Pay</button></div>
+            </div>
+       
+        </div>
+    </div>
+  
+    <p class="total">Total Price: PKR{{ total_price }}</p>
+    {% include "gameverse/partials/footer.html" %}
+    
+</body>
+</html>
